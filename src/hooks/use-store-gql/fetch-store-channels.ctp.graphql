@@ -1,0 +1,55 @@
+query FetchStoreChannels($limit: Int!, $offset: Int!, $sort: [String!]) {
+  channels(
+    limit: $limit
+    offset: $offset
+    sort: $sort
+    where: "roles contains any (\"InventorySupply\")"
+  ) {
+    total
+    results {
+      id
+      version
+      key
+      roles
+      nameAllLocales {
+        locale
+        value
+      }
+      address {
+        country
+        streetName
+        streetNumber
+        additionalStreetInfo
+        postalCode
+        city
+        state
+        region
+        additionalAddressInfo
+        company
+        apartment
+        building
+        department
+        pOBox
+        phone
+        mobile
+        fax
+        email
+        firstName
+        lastName
+        title
+        salutation
+      }
+      geoLocation {
+        ... on Point {
+          coordinates
+        }
+      }
+      custom {
+        customFieldsRaw {
+          name
+          value
+        }
+      }
+    }
+  }
+}
